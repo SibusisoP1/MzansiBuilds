@@ -1,0 +1,259 @@
+.profile-page {
+  min-height: 100vh;
+  padding: 40px 0;
+  background-color: var(--light-gray);
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.profile-header h1 {
+  color: var(--black);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.profile-header p {
+  color: var(--gray);
+  font-size: 1.1rem;
+}
+
+.profile-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.profile-form {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.profile-form h2 {
+  color: var(--black);
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--light-gray);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-green);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.error-message {
+  background-color: var(--danger);
+  color: var(--white);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.success-message {
+  background-color: var(--primary-green);
+  color: var(--white);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-actions {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid var(--light-gray);
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.profile-card {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.profile-card h2 {
+  color: var(--black);
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  overflow: hidden;
+  border: 4px solid var(--primary-green);
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--primary-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.profile-card h3 {
+  color: var(--black);
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.profile-email {
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+
+.profile-bio,
+.profile-skills,
+.profile-stats {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.profile-bio h4,
+.profile-skills h4,
+.profile-stats h4 {
+  color: var(--black);
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.profile-bio p {
+  color: var(--black);
+  line-height: 1.6;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  background: var(--light-green);
+  color: var(--black);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.profile-stats .stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.profile-stats .stat:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.stat-value {
+  color: var(--black);
+  font-weight: 600;
+}
+
+.quick-actions {
+  background: var(--white);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.quick-actions h3 {
+  color: var(--black);
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.btn-full {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.btn-full:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .profile-content {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-form {
+    padding: 30px 20px;
+  }
+
+  .profile-header h1 {
+    font-size: 2rem;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .avatar-placeholder {
+    font-size: 2.5rem;
+  }
+}
