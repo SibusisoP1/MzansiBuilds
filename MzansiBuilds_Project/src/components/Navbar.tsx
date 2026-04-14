@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
@@ -11,7 +11,6 @@ const Navbar: React.FC = () => {
       await logout();
       navigate("/");
     } catch (error) {
-      console.error("Logout failed:", error);
     }
   };
 

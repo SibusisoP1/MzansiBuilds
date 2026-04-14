@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import "./Profile.css";
 
 const Profile: React.FC = () => {
@@ -47,8 +47,8 @@ const Profile: React.FC = () => {
     try {
       await updateProfile(formData);
       setSuccess("Profile updated successfully!");
-    } catch (error: any) {
-      setError(error.message || "Failed to update profile");
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : "Failed to update profile");
     } finally {
       setSaving(false);
     }

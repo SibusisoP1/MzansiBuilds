@@ -1,0 +1,180 @@
+:root {
+  --primary-green: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --primary-blue: #007bff;
+  --light-gray: #f8f9fa;
+}
+
+.feed-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feed-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.feed-header h1 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.feed-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.feed-list {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.feed-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s ease;
+}
+
+.feed-item:hover {
+  transform: translateY(-2px);
+}
+
+.activity-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.feed-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #666;
+}
+
+.feed-meta {
+  flex: 1;
+}
+
+.feed-meta h3 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.feed-meta .username {
+  color: #007bff;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.feed-meta .timestamp {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.feed-content {
+  color: #555;
+  line-height: 1.5;
+}
+
+.feed-description {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+.activity-type {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.activity-type.project-created {
+  background: #d4edda;
+  color: #155724;
+}
+
+.activity-type.comment-added {
+  background: #cce5ff;
+  color: #004085;
+}
+
+.activity-type.collaboration-request {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.no-activities h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.feed-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.feed-project-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.feed-project-link:hover {
+  background-color: #f8f9fa;
+  text-decoration: underline;
+}
+
+.load-more {
+  text-align: center;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .feed-page {
+    padding: 1rem;
+  }
+
+  .feed-list {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

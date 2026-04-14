@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  type ReactNode,
-} from "react";
+import React, { useState, useEffect, type ReactNode } from "react";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -21,30 +15,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 import type { User } from "../types";
-
-interface AuthContextType {
-  user: User | null;
-  firebaseUser: FirebaseUser | null;
-  loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  register: (
-    username: string,
-    email: string,
-    password: string,
-  ) => Promise<void>;
-  logout: () => Promise<void>;
-  updateProfile: (userData: Partial<User>) => Promise<void>;
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+import { AuthContext, type AuthContextType } from "./AuthContextDefinition";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -65,7 +36,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         if (userQuery.exists()) {
           const userData = userQuery.data() as User;
           setUser({
-            id: parseInt(userQuery.id),
+            id: userQuery.id,
             username: userData.username,
             email: userData.email,
             avatar: userData.avatar || "",
@@ -86,14 +57,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      );
+      await signInWithEmailAndPassword(auth, email, password);
       // The onAuthStateChanged listener will handle setting the user
-    } catch (error: any) {
-      throw new Error(error.message || "Login failed");
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Login failed";
+      throw new Error(errorMessage);
     }
   };
 
@@ -108,9 +77,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         email,
         password,
       );
+      const { user } = userCredential;
 
       // Create user document in Firestore
-      await setDoc(doc(db, "users", userCredential.user.uid), {
+      await setDoc(doc(db, "users", user.uid), {
         username,
         email,
         avatar: "",
@@ -118,11 +88,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         skills: "",
         created_at: serverTimestamp(),
         updated_at: serverTimestamp(),
-      } as any);
+      });
 
       // The onAuthStateChanged listener will handle setting the user
-    } catch (error: any) {
-      throw new Error(error.message || "Registration failed");
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Registration failed";
+      throw new Error(errorMessage);
     }
   };
 
@@ -131,8 +103,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       await firebaseSignOut(auth);
       setUser(null);
       setFirebaseUser(null);
-    } catch (error: any) {
-      throw new Error(error.message || "Logout failed");
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Logout failed";
+      throw new Error(errorMessage);
     }
   };
 
@@ -150,8 +124,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (user) {
         setUser({ ...user, ...userData });
       }
-    } catch (error: any) {
-      throw new Error(error.message || "Failed to update profile");
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to update profile";
+      throw new Error(errorMessage);
     }
   };
 

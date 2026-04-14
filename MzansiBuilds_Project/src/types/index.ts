@@ -1,5 +1,5 @@
 export interface User {
-  id: number;
+  id: string;
   username: string;
   email: string;
   avatar: string;
@@ -9,8 +9,8 @@ export interface User {
 }
 
 export interface Project {
-  id: number;
-  user_id: number;
+  id: string;
+  user_id: string;
   title: string;
   description: string;
   stage: string;
@@ -32,8 +32,8 @@ export interface Project {
 }
 
 export interface Milestone {
-  id: number;
-  project_id: number;
+  id: string;
+  project_id: string;
   title: string;
   description: string;
   achieved: boolean;
@@ -42,9 +42,9 @@ export interface Milestone {
 }
 
 export interface Comment {
-  id: number;
-  project_id: number;
-  user_id: number;
+  id: string;
+  project_id: string;
+  user_id: string;
   content: string;
   created_at: string;
   username?: string;
@@ -52,9 +52,9 @@ export interface Comment {
 }
 
 export interface CollaborationRequest {
-  id: number;
-  project_id: number;
-  requester_id: number;
+  id: string;
+  project_id: string;
+  requester_id: string;
   message: string;
   status: string;
   created_at: string;
@@ -63,9 +63,9 @@ export interface CollaborationRequest {
 }
 
 export interface FeedActivity {
-  id: number;
-  user_id: number;
-  project_id?: number;
+  id: string;
+  user_id: string;
+  project_id?: string;
   activity_type: string;
   description: string;
   created_at: string;

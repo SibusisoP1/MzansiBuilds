@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -35,8 +35,8 @@ const Register: React.FC = () => {
     try {
       await register(formData.username, formData.email, formData.password);
       navigate("/dashboard");
-    } catch (err: any) {
-      setError(err.message || "Registration failed");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Registration failed");
     } finally {
       setLoading(false);
     }
